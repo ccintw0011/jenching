@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多層折扣計算器</title>
+    <script>
+        function calculateDiscount() {
+            const A1 = parseFloat(document.getElementById("priceA1").value) || 0;
+            const A2 = parseFloat(document.getElementById("priceA2").value) || 0;
+            const A3 = parseFloat(document.getElementById("priceA3").value) || 0;
+            const A4 = parseFloat(document.getElementById("priceA4").value) || 0;
+            const A5 = parseFloat(document.getElementById("priceA5").value) || 0;
+
+            // 第一層折扣
+            const discountA1 = Math.round(A1 * 0.9);
+
+            // 第二層條件折扣
+            const discountA2 = Math.round(
+                A2 > 2 * A1 
+                    ? (A2 - A1 * 2) + (A1 * 2 * 0.8) 
+                    : A2 * 0.8
+            );
+
+            // 第三層條件折扣
+            const discountA3 = Math.round(
+                A3 > 2 * A2 
+                    ? (A3 - A2 * 2) + (A2 * 2 * 0.7) 
+                    : A3 * 0.7
+            );
+
+            // 第四層條件折扣
+            const discountA4 = Math.round(
+                A4 > 2 * A3 
+                    ? (A4 - A3 * 2) + (A3 * 2 * 0.6) 
+                    : A4 * 0.6
+            );
+
+            // 第五層條件折扣
+            const discountA5 = Math.round(
+                A5 > 2 * A4 
+                    ? (A5 - A4 * 2) + (A4 * 2 * 0.5) 
+                    : A5 * 0.5
+            );
+
+            // 更新結果
+            document.getElementById("discountA1").textContent = discountA1;
+            document.getElementById("discountA2").textContent = discountA2;
+            document.getElementById("discountA3").textContent = discountA3;
+            document.getElementById("discountA4").textContent = discountA4;
+            document.getElementById("discountA5").textContent = discountA5;
+        }
+    </script>
+</head>
+<body>
+    <h1>活動計算機</h1>
+    <table border="1" style="text-align: center;">
+        <tr>
+            <th>原價</th>
+            <th>優惠價</th>
+        </tr>
+        <tr>
+            <td><input id="priceA1" type="number" oninput="calculateDiscount()"></td>
+            <td><span id="discountA1">0</span></td>
+        </tr>
+        <tr>
+            <td><input id="priceA2" type="number" oninput="calculateDiscount()"></td>
+            <td><span id="discountA2">0</span></td>
+        </tr>
+        <tr>
+            <td><input id="priceA3" type="number" oninput="calculateDiscount()"></td>
+            <td><span id="discountA3">0</span></td>
+        </tr>
+        <tr>
+            <td><input id="priceA4" type="number" oninput="calculateDiscount()"></td>
+            <td><span id="discountA4">0</span></td>
+        </tr>
+        <tr>
+            <td><input id="priceA5" type="number" oninput="calculateDiscount()"></td>
+            <td><span id="discountA5">0</span></td>
+        </tr>
+    </table>
+</body>
+</html>
